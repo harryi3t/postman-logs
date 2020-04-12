@@ -1,5 +1,6 @@
 import React, {useState, useCallback} from "react";
 import Log from "../components/Log";
+import LogHeader from "../components/LogHeader";
 
 function parseRawLogLine (line) {
   let items = line.match(
@@ -90,18 +91,21 @@ function LogPreview(props) {
         </div>
       </div>
       <div className="log-body">
-        {
-          logs.map((log,index) => {
-            return <Log
-              key={index}
-              pId={log.pid}
-              process={log.process}
-              timestamp={log.timestamp}
-              level={log.level}
-              message={log.message}
-            />
-          })
-        }
+        <LogHeader />
+        <div className="table-body">
+          {
+            logs.map((log,index) => {
+              return <Log
+                key={index}
+                pId={log.pId}
+                process={log.process}
+                timestamp={log.timestamp}
+                level={log.level}
+                message={log.message}
+              />
+            })
+          }
+        </div>
       </div>
     </div>
   );

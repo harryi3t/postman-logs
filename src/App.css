@@ -11,19 +11,23 @@
   margin-top: 10px;
 }
 
-.postman-log {
+.table-header, .postman-log {
   display: flex;
   border: 1px solid #aaa;
   padding: 5px;
 }
 
-.postman-log > div {
+.table-header > div, .postman-log > div {
   border-right: 1px solid #aaa;
   padding: 0 5px;
   flex: 0 0 100px;
 }
 
-.postman-log .message {
+.table-header > div:last-child, .postman-log > div:last-child {
+  border-right: none
+}
+
+.table-header .messagem, .postman-log .message {
   flex: 1;
 }
 
