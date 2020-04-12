@@ -1,38 +1,53 @@
 .App {
+  font-family: sans-serif;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.postman-log-preview {
+  margin: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.postman-log-preview .log-body {
+  margin-top: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.postman-log {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border: 1px solid #aaa;
+  padding: 5px;
 }
 
-.App-link {
-  color: #61dafb;
+.postman-log > div {
+  border-right: 1px solid #aaa;
+  padding: 0 5px;
+  flex: 0 0 100px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.postman-log .message {
+  flex: 1;
+}
+
+.log-header .filter-group {
+  position: relative;
+  height: 25px;
+  width: 300px;
+}
+.filter-group .regex {
+  position: absolute;
+  right: 0;
+  position: absolute;
+  right: 0;
+  font-size: larger;
+  font-weight: 900;
+  padding: 2px;
+  border-radius: 5px;
+  cursor: pointer;
+  user-select: none;
+}
+.filter-group .regex.active {
+  background-color: #ddd;
+}
+.filter-group .filter-input{
+  height: -webkit-fill-available;
+  width: 100%;
 }

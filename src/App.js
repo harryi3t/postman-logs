@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState, useCallback} from 'react';
 import './App.css';
+import { DndProvider } from "react-dnd";
+import Backend from "react-dnd-html5-backend";
+import LogPreview from "./containers/LogPreview";
+import DropTarget from "./components/DropTarget"
+
 
 function App() {
+  let [files, updateFiles] = useState([]);
+
+  let onDrop = useCallback((item, monitor) => {
+    let filesUploaded = monitor.getItem().files;
+
+    filesUploaded.forEach(file => {
+      let fileName = file.name,
+          reader = new FileReader();
+
+      reader.onload = function (event) {
+        let content = event.target.result;
+        updateFiles(files.concat({fileName, content }))
+      };
+      reader.readAsText(file);
+    });
+  })
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Postman Logs</h1>
+      <DndProvider backend={Backend}>
+        <DropTarget onDrop={onDrop}/>
+        <LogPreview files={files}/>
+      </DndProvider>
     </div>
-  );
-}
+    );
+  }
 
-export default App;
+  export default App;
